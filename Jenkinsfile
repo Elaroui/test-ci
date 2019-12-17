@@ -6,8 +6,6 @@ pipeline {
                 sh 'php composer.phar install --optimize-autoloader --no-interaction --no-progress --no-ansi --no-suggest'
             }
         }
-    }
-    stages {
         stage('test') {
             steps {
                 sh 'php vendor/bin/simple-phpunit'
