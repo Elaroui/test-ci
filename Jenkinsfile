@@ -1,10 +1,15 @@
 pipeline {
-    agent { docker { image 'php' } }
+    agent {
+        docker {
+            image 'php'
+            args '-u root:sudo'
+        }
+    }
     stages {
         stage('build') {
             steps {
                 sh '''
-                    chmod -R 755 var/www/html
+                    curl -sS https://getcomposer.org/installer | php
                     php composer.phar install --optimize-autoloader --no-interaction --no-progress --no-ansi --no-suggest
                 '''
             }
