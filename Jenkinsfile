@@ -4,9 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 sh '''
-                    mount -o remount,exec /var
-                    apt-get install git -yqq zlib1g-dev
-                    curl -sS https://getcomposer.org/installer | php
+                    chmod -R 755 var/www/html
                     php composer.phar install --optimize-autoloader --no-interaction --no-progress --no-ansi --no-suggest
                 '''
             }
