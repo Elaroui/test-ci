@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'php'
+            image 'php:7.2-cli'
             args '-u root:sudo'
         }
     }
