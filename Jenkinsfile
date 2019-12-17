@@ -12,8 +12,10 @@ pipeline {
                     apt-get update -yqq
                     apt-get install git -yqq zlib1g-dev
                     curl -sS https://getcomposer.org/installer | php
-                    php composer.phar install --optimize-autoloader --no-interaction --no-progress --no-ansi --no-suggest
                 '''
+                timeout(time: 20, unit: 'MINUTES') {
+                    sh 'php composer.phar install --optimize-autoloader --no-interaction --no-progress --no-ansi --no-suggest'
+                }
             }
         }
         stage('test') {
