@@ -23,5 +23,10 @@ pipeline {
                 sh 'php vendor/bin/simple-phpunit'
             }
         }
+        stage('review') {
+            steps {
+                sh 'php vendor/bin/phpcs --report=summary --standard=PSR12 ./src/AppBundle'
+            }
+        }
     }
 }
